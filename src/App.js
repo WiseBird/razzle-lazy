@@ -1,12 +1,15 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Home from './Home';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
 
+const Home = React.lazy(() => import('./Home'))
+
 const App = () => (
-  <Switch>
-    <Route exact={true} path="/" component={Home} />
-  </Switch>
+    <React.Suspense fallback={<>...</>}>
+        <Switch>
+            <Route exact={true} path="/" component={Home}/>
+        </Switch>
+    </React.Suspense>
 );
 
 export default App;
